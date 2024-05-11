@@ -20,6 +20,8 @@ public class Array06GeneradorAleatorioDeBanderas {
     for (int i = 0; i < franjas; i++) {
       System.out.println(color[(int)(Math.random() * 6)]);
       System.out.println("--------------");
+
+      s.close();
     }
   }
 }
