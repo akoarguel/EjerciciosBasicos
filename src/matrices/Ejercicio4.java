@@ -1,4 +1,7 @@
 /*
+
+TERMINADO
+
 4) Nos piden crear una matriz de 4×4 de números enteros que inicialmente esta vacía, nos piden hacer un menú con estas opciones:
 
 Rellenar TODA la matriz de números, debes pedírselo al usuario.
@@ -26,7 +29,7 @@ public class Ejercicio4 {
         boolean matrizLlena = false;
 
         do {
-            System.out.print("\u001B[0m");
+            System.out.print("\u001B[0m"); 
             menu();
             System.out.println("ELIGE UNA DE LAS OPCIONES: ");
             respuesta = Integer.parseInt(scanner.readLine());
