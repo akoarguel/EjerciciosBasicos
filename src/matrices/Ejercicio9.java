@@ -31,7 +31,6 @@ public class Ejercicio9 {
         System.out.println(jugador2 + " --> " + Colores.AZUL + "O" + Colores.RESTART);
 
         vaciarTablero(tablero);
-        mostrarTablero(tablero);
 
         // No salimos hasta que uno gane o no haya mas posibilidades
         while (!finPartida(tablero, vacio)) {
@@ -82,19 +81,65 @@ public class Ejercicio9 {
         mostrarTablero(tablero);
 
         // Mostramos el ganador
-        mostrarGanador(tablero, J1, J2, vacio);
+        mostrarGanador(tablero, J1, J2, vacio, jugador1, jugador2);
 
         scanner.close();
 
     }
 
-    private static void mostrarGanador(char[][] tablero, char j1, char j2, char vacio) {
-        switch (tablero) {
-            case value:
-                
+    private static void mostrarGanador(char[][] tablero, char j1, char j2, char vacio, String jugador1,
+            String jugador2) {
+        char simbolo = coincidenciaLinea(tablero, vacio);
+
+        if (simbolo != vacio) {
+            ganador(simbolo, j1, j2, 1, jugador1, jugador2);
+
+            return;
+        }
+
+        simbolo = coincidenciaColumna(tablero, vacio);
+
+        if (simbolo != vacio) {
+            ganador(simbolo, j1, j2, 2, jugador1, jugador2);
+
+            return;
+        }
+
+        simbolo = coincidenciaDiagonal(tablero, vacio);
+
+        if (simbolo != vacio) {
+            ganador(simbolo, j1, j2, vacio, jugador1, jugador2);
+
+            return;
+
+        }
+
+        System.out.println("\nHAY EMPATE. ");
+
+    }
+
+    private static void ganador(char simbolo, char j1, char j2, int tipo, String jugador1, String jugador2) {
+        switch (tipo) {
+            case 1:
+                if (simbolo == j1) {
+                    System.out.println("Ha ganado " + jugador1 + " por línea: ");
+                } else {
+                    System.out.println("Ha ganado " + jugador2 + " por línea. ");
+                }
                 break;
-        
-            default:
+            case 2:
+                if (simbolo == j1) {
+                    System.out.println("Ha ganado " + jugador1 + " por columna: ");
+                } else {
+                    System.out.println("Ha ganado " + jugador2 + " por columna. ");
+                }
+                break;
+            case 3:
+                if (simbolo == j1) {
+                    System.out.println("Ha ganado " + jugador1 + " por diagonal: ");
+                } else {
+                    System.out.println("Ha ganado " + jugador2 + " por diagonal. ");
+                }
                 break;
         }
     }
@@ -107,7 +152,7 @@ public class Ejercicio9 {
         if (tablero[fila][columna] != vacio) {
             return true;
         }
- 
+
         return false;
     }
 
@@ -245,6 +290,7 @@ public class Ejercicio9 {
     public static int pedirInteger(String mensaje, Scanner scanner) {
         System.out.println(mensaje);
         int numero = scanner.nextInt();
+        numero -= 1;
 
         return numero;
     }
